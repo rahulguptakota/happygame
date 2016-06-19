@@ -1,0 +1,31 @@
+div#memory_board{
+	background-image: url("happyfaces.jpg");
+	border:#999 1px solid;
+	width:540px;
+	height:500px;
+	padding:24px;
+	margin:0px auto;
+}
+div#memory_board > div{
+	border:#000 1px solid;
+	width:230px;
+	height:215px;
+	float:left;
+	margin:5px;
+	padding:10px;
+	font-size:64px;
+	cursor:pointer;
+	text-align:center;
+}
+#stopwatch{
+    width:120px;
+    height:20px;
+    background-color:#CCC;
+    border:3px solid #999;
+    text-align: center;
+    margin:0px auto;
+}
+#hidden{
+	display:none;
+}
+

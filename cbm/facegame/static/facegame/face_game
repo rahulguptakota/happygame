@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	div#memory_board{
+		background-image: url("happyfaces.jpg");
+		border:#999 1px solid;
+		width:540px;
+		height:500px;
+		padding:24px;
+		margin:0px auto;
+	}
+	div#memory_board > div{
+		border:#000 1px solid;
+		width:230px;
+		height:215px;
+		float:left;
+		margin:5px;
+		padding:10px;
+		font-size:64px;
+		cursor:pointer;
+		text-align:center;
+	}
+	#stopwatch{
+	    width:120px;
+	    height:20px;
+	    background-color:#CCC;
+	    border:3px solid #999;
+	    text-align: center;
+	    margin:0px auto;
+	}
+</style>
+<script>
+
+var time = 0;
+var running = 1;
+
+increment();
+
+function reset(){
+	time =0;
+	running =1;
+	score = 0;
+	document.getElementById('score').innerHTML = "Your Score is " + score;
+}
+function increment()
+{
+    if(running == 1){
+        setTimeout(function(){
+            time++;
+            var mins = Math.floor(time/10/60);
+            var secs = Math.floor(time/10 % 60);
+            var tenths = time % 10;
+           
+            if(mins < 10){
+                    mins = "0" + mins;
+            }
+            if(secs < 10){
+                    secs = "0" + secs;
+            }
+            document.getElementById("stopwatch").innerHTML = mins + ":" + secs + ":" +  tenths + "0";
+            increment();
+               
+        },100);
+    }
+}
+
+
+var totalh = 41;
+var totals = 8;
+var totala = 4;
+var totaln = 63;
+var memory_array = ['A','B','C','D'];
+var memory_values = [];
+var memory_tile_ids = [];
+var tiles_flipped = 0;
+var score =0;
+var image1 = '';
+var image2 = '';
+var image3 = '';
+var image4 = '';
+var ans =0;
+Array.prototype.memory_tile_shuffle = function(){
+    var i = this.length, j, temp;
+    while(--i > 0){
+        j = Math.floor(Math.random() * (i+1));
+        temp = this[j];
+        this[j] = this[i];
+        this[i] = temp;
+    }
+}
+function newBoard(){
+	tiles_flipped = 0;
+	var output = '';
+    memory_array.memory_tile_shuffle();
+    for(var i = 0; i < memory_array.length; i++){
+    	if(memory_array[i] == 'A'){
+			ans = i;
+		}
+    }
+	for(var i = 0; i < memory_array.length; i++){
+		if(memory_array[i] == 'A'){
+			source = "happy/p"+Math.floor(Math.random() * (totalh));
+		}
+		else if(memory_array[i] == 'B'){
+			source = "sad/p"+Math.floor(Math.random() * (totals));
+		}
+		else if(memory_array[i] == 'C'){
+			source = "angry/p"+Math.floor(Math.random() * (totala));
+		}
+		else{
+			source = "neutral/p"+Math.floor(Math.random() * (totaln));
+		}
+		output += '<div id="tile_'+i+'" onclick="happyClick('+i+',\''+ans+'\')"><img src='+source+' height="100%" width="100%"></img></div>';
+	}
+	document.getElementById('memory_board').innerHTML = output;
+	document.getElementById('score').innerHTML = "Your Score is " + score;
+}
+
+function happyClick(num, ans){
+	if(ans==num){
+		score = score + 1;
+		document.getElementById('score').innerHTML =  "Your Score is " + score;
+		var output = '';
+	    memory_array.memory_tile_shuffle();
+		for(var i = 0; i < memory_array.length; i++){
+			if(memory_array[i] == 'A'){
+				source = "happy/p"+Math.floor(Math.random() * (totalh));
+				ans = i;
+			}
+			else if(memory_array[i] == 'B'){
+				source = "sad/p"+Math.floor(Math.random() * (totals));
+			}
+			else if(memory_array[i] == 'C'){
+				source = "angry/p"+Math.floor(Math.random() * (totala));
+			}
+			else{
+				source = "neutral/p"+Math.floor(Math.random() * (totaln));
+			}
+			output += '<div id="tile_'+i+'" onclick="happyClick('+i+',\''+ans+'\')"><img src='+source+' height="100%" width="100%"></img></div>';
+		}
+		document.getElementById('memory_board').innerHTML = output;
+	}
+	else{
+		alert("you lost.. You will play again")
+		reset();
+	}
+}
+// function memoryFlipTile(tile,val){
+// 	if(tile.innerHTML == "" && memory_values.length < 2){
+// 		tile.style.background = '#FFF';
+// 		tile.innerHTML = val;
+// 		if(memory_values.length == 0){
+// 			memory_values.push(val);
+// 			memory_tile_ids.push(tile.id);
+// 		} else if(memory_values.length == 1){
+// 			memory_values.push(val);
+// 			memory_tile_ids.push(tile.id);
+// 			if(memory_values[0] == memory_values[1]){
+// 				tiles_flipped += 2;
+// 				// Clear both arrays
+// 				memory_values = [];
+//             	memory_tile_ids = [];
+// 				// Check to see if the whole board is cleared
+// 				if(tiles_flipped == memory_array.length){
+// 					alert("Board cleared... generating new board");
+// 					document.getElementById('memory_board').innerHTML = "";
+// 					newBoard();
+// 				}
+// 			} else {
+// 				function flip2Back(){
+// 				    // Flip the 2 tiles back over
+// 				    var tile_1 = document.getElementById(memory_tile_ids[0]);
+// 				    var tile_2 = document.getElementById(memory_tile_ids[1]);
+// 				    tile_1.style.background = 'url(tile_bg.jpg) no-repeat';
+//             	    tile_1.innerHTML = "";
+// 				    tile_2.style.background = 'url(tile_bg.jpg) no-repeat';
+//             	    tile_2.innerHTML = "";
+// 				    // Clear both arrays
+// 				    memory_values = [];
+//             	    memory_tile_ids = [];
+// 				}
+// 				setTimeout(flip2Back, 700);
+// 			}
+// 		}
+// 	}
+// }
+</script>
+</head>
+<body>
+<h3 id= "score" align="center"></h3>
+
+<h4 id="stopwatch" align="right"></h4>
+<div id="memory_board"></div>
+
+<script>newBoard();</script>
+</body>
+</html>
