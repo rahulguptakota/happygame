@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'cbm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': '',
-        'NAME': 'facegame',
+        'HOST': 'localhost',
+        'NAME': 'cbm',
         'DEFAULT':0,
-        'PASSWORD': 'star',
-        'PORT': '',
+        'PASSWORD': 'automaticCBT',
+        'PORT': '3306',
         'USER': 'root',
         'TEST': {
             'NAME': 'mytestdatabase',

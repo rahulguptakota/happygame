@@ -89,7 +89,7 @@ function myfunc(){
 						source = source4;
 						// source = document.getElementById("hidden").getAttribute("src")+"/neutral/p"+Math.floor(Math.random() * (totaln));
 					}
-					output += '<div id="tile_'+i+'"><img src="'+source+'" height="100%" width="100%"></img></div>';
+					output += '<div id=\"tile_'+i+'\"><img src=\"'+source+'\" height=\"100%\" width=\"100%\"></img></div>';
 					// document.getElementById("tile_"+i).onclick = happyClick(i, ans);
 				}
 				score = score + 1;
