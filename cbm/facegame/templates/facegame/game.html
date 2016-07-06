@@ -1,7 +1,9 @@
 {% load staticfiles %}
 <link rel="stylesheet" type="text/css" href="{% static 'facegame/gamestyle.css' %}" />
-<script type="text/javascript" src="{% static 'jquery-3.0.0.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'facegame/jquery-3.0.0.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'facegame/jquery.cookie.js' %}"></script>
 <script type="text/javascript" src="{% static 'facegame/face_game.js' %}"></script>
+
 <h1>{{ user_data.id }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -15,4 +17,6 @@
 
 <h4 id="stopwatch" align="right"></h4>
 <div id="memory_board"></div>
-<div id="hidden" src="{% static 'facegame/' %}"></div>
+<div id="hidden" class="static" src="{% static 'facegame/' %}"></div>
+<div id="hidden" class="user_id">{{user_data.id}}</div>
+<div id="hidden" class="csrf">{% csrf_token %}</div>

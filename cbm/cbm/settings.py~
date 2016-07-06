@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'facegame',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -77,11 +78,11 @@ WSGI_APPLICATION = 'cbm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': '',
-        'NAME': 'facegame',
+        'HOST': 'localhost',
+        'NAME': 'cbm',
         'DEFAULT':0,
-        'PASSWORD': 'star',
-        'PORT': '',
+        'PASSWORD': 'automaticCBT',
+        'PORT': '3306',
         'USER': 'root',
         'TEST': {
             'NAME': 'mytestdatabase',
@@ -108,3 +109,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'cbmimages')
+
+MEDIA_URL = '/cbmimages/'

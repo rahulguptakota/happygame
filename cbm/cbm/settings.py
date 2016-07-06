@@ -79,10 +79,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': 'localhost',
-        'NAME': 'cbm',
+        'NAME': 'facegame',
         'DEFAULT':0,
-        'PASSWORD': 'automaticCBT',
-        'PORT': '3306',
+        'PASSWORD': 'star',
+        'PORT': '',
         'USER': 'root',
         'TEST': {
             'NAME': 'mytestdatabase',

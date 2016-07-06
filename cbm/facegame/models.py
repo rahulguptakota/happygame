@@ -8,7 +8,7 @@ class scores(models.Model):
 	def __str__(self):
 		return self.username
 	# user = models.ForeignKey(settings.AUTH_USER_MODEL)
-	username = models.CharField(max_length=25)
+	username = models.CharField(max_length=25) #username should be a foreign key derived from some central db you have
 	score = models.IntegerField(default=0)
 	level = models.IntegerField(default=0)
 	last_played = models.DateTimeField('date published')
